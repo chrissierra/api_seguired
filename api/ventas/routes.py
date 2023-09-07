@@ -7,6 +7,7 @@ from api.ventas.models import Venta, VentaResponse
 
 ventas = VentaAPI()  # Asumiendo que tienes una clase VentaAPI que implementa los métodos
 ventas_router = APIRouter()
+
 # Para listar todas las ventas
 ventas_router.add_api_route(
     path='/ventas',
@@ -21,6 +22,15 @@ ventas_router.add_api_route(
     path='/ventas/{id}',
     endpoint=ventas.get,
     response_model=VentaResponse,
+    status_code=status.HTTP_200_OK,
+    methods=['GET']
+)
+
+# Para obtener una venta específica por idusuario
+ventas_router.add_api_route(
+    path='/ventas/by-id-usuario/{id_usuario}',
+    endpoint=ventas.get_by_id_usuario,
+    response_model=list[VentaResponse],
     status_code=status.HTTP_200_OK,
     methods=['GET']
 )

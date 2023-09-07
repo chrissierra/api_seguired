@@ -1,6 +1,5 @@
-from typing import Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 from uuid import UUID
 
 from api.tipo_productos.models import TipoProducto

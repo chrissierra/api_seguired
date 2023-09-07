@@ -4,7 +4,7 @@ from db.connection import get_db
 from fastapi.params import Depends
 
 from api.entregas.models import EntregaModel
-from db.models import EntregaDB
+from db.entregas.models import EntregaDB
 # from .models import EntregaDB  # Asegúrate de que la ruta sea correcta
 
 class EntregaRepository:

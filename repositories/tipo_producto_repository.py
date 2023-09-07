@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from db.connection import get_db
 from uuid import UUID
 
-from db.models import TipoProductoDB
+from db.tipo_productos.models import TipoProductoDB
 
 class TipoProductoRepository:
     def __init__(self, db: Session = Depends(get_db)):

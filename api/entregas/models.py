@@ -1,7 +1,8 @@
-from typing import Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 from uuid import UUID
+
+from repositories.pasos_repository import PasosModel
 
 
 class EntregaModel(BaseModel):
@@ -29,6 +30,7 @@ class EntregaModelListar(BaseModel):
 class Entrega(BaseModel):
     ventas_id: UUID
     fecha: str
+    pasos: list[PasosModel]
     """ pasos_id: UUID """
     class Config:
         orm_mode = True

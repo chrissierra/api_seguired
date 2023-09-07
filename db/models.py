@@ -5,7 +5,7 @@ from db.connection import Base
 from sqlalchemy import Column, String, Float, ForeignKey
 from sqlalchemy.orm import relationship
 
-
+""" 
 class UserDB(Base):
     __tablename__ = 'usuarios'
     id = Column(UUID(as_uuid=True), primary_key=True, index=True, default=uuid.uuid4)
@@ -112,3 +112,4 @@ class VentaProductoDB(Base):
     producto_id = Column(UUID(as_uuid=True), ForeignKey('productos.id'), nullable=False)
 
 
+ """

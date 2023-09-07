@@ -1,4 +1,3 @@
-import uuid
 from fastapi.params import Depends
 from api.usuarios.models import CreateUser, User
 from repositories.user_repository import UserRepository

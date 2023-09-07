@@ -1,7 +1,9 @@
+from typing import List
 from fastapi import APIRouter
 from starlette import status
 from api.pasos.endpoints import PasosAPI
 from api.pasos.models import CreatePasos, PasosResponseModelListar
+from api.pasos.models import PasoEstandar
 
 
 pasos = PasosAPI()  # Asumiendo que tienes una clase PasosAPI que implementa los métodos
@@ -31,6 +33,24 @@ pasos_router.add_api_route(
     response_model=CreatePasos,
     status_code=status.HTTP_201_CREATED,
     methods=['POST']
+)
+
+# Para crear un nuevo paso estandar
+pasos_router.add_api_route(
+    path='/paso-estandar',
+    endpoint=pasos.create_paso_estandar,
+    response_model=PasoEstandar,
+    status_code=status.HTTP_201_CREATED,
+    methods=['POST']
+)
+
+# Get para los pasos estandar
+pasos_router.add_api_route(
+    path='/pasos-estandar/{id_usuario}',
+    endpoint=pasos.get_pasos_estandar_by_id_usuario,
+    response_model=List[PasoEstandar],
+    status_code=status.HTTP_200_OK,
+    methods=['GET']
 )
 
 # Para actualizar un paso existente

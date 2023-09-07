@@ -2,7 +2,7 @@ from fastapi.params import Depends
 from sqlalchemy.orm import Session
 
 from db.connection import get_db
-from db.models import UserDB
+from db.usuarios.models import UserDB
 
 
 class UserRepository:

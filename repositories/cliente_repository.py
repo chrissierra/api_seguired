@@ -2,7 +2,7 @@ from uuid import UUID
 from fastapi import Depends
 from sqlalchemy.orm import Session
 from db.connection import get_db
-from db.models import ClienteDB
+from db.clientes.models import ClienteDB
 
 
 # from .models import ClienteDB  # Asegúrate de que la ruta sea correcta

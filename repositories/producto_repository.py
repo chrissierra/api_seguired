@@ -4,7 +4,7 @@ from db.connection import get_db
 from uuid import UUID
 from sqlalchemy.orm import joinedload
 
-from db.models import ProductoDB
+from db.productos.models import ProductoDB
 # from .models import Productos  # Asegúrate de que la ruta sea correcta
 
 class ProductoRepository:
