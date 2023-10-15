@@ -2,13 +2,15 @@
 from pydantic import BaseModel
 from uuid import UUID
 from typing import Optional
+
 class PasosResponseModelListar(BaseModel):
     id: UUID
     id_usuario: UUID
-    tipo_producto_id: UUID
+    tipo_producto_id: Optional[UUID] = None
     """ nombre_paso: str """
     caracteristicas: str
     ordinalidad: str
+    en_curso: bool
     class Config:
         orm_mode = True
 
@@ -22,11 +24,15 @@ class CreatePasos(BaseModel):
     ordinalidad: str
 
 class UpdatePasos(BaseModel):
+    id: UUID
     id_usuario: UUID
-    tipo_producto_id: UUID
+    tipo_producto_id: Optional[UUID] = None
     """ nombre_paso: str """
     caracteristicas: str
     ordinalidad: str
+    en_curso: bool
+    class Config:
+        orm_mode = True
 
 class CreatePasoEstandar(BaseModel):
     id_usuario: UUID
@@ -39,6 +45,7 @@ class PasoEstandar(BaseModel):
     nombre: str
     class Config:
         orm_mode = True
+        
 class Identificador(BaseModel):
     id: UUID
     class Config:

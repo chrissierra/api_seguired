@@ -13,6 +13,7 @@ class UserDB(Base):
     nombre = Column(String)
     rut = Column(String)
     direccion = Column(String)
+    logo = Column(String)
     email = Column(String, unique=True)
     clientes = relationship("ClienteDB", back_populates="usuario", foreign_keys="[ClienteDB.usuario_id]")
     productos = relationship("ProductoDB", back_populates="usuario")

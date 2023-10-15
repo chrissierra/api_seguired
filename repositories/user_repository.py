@@ -1,3 +1,4 @@
+from uuid import UUID
 from fastapi.params import Depends
 from sqlalchemy.orm import Session
 
@@ -20,6 +21,19 @@ class UserRepository:
         self.db.refresh(usuario)
         return usuario
     
+    def update(self,  id: UUID, usuario: UserDB):
+        print(f"El id es {id}")
+        db_usuario = self.db.query(UserDB).filter(UserDB.id == id).first()
+        if db_usuario is None:
+            return None
+        for var, value in vars(usuario).items():
+            setattr(db_usuario, var, value)
+        self.db.commit()
+        self.db.refresh(db_usuario)
+        return db_usuario
+    
+
+
     #def get_producto(self,  producto_id: int):
     def get_by_email(self, email: str) -> UserDB:
         print(email)

@@ -1,6 +1,7 @@
 
+import datetime
 import uuid
-from sqlalchemy import Column, Float
+from sqlalchemy import Column, Float, String, Date
 from sqlalchemy.dialects.postgresql import UUID
 from db.connection import Base
 from sqlalchemy import Column, ForeignKey
@@ -28,6 +29,8 @@ class VentaDB(Base):
     id = Column(UUID(as_uuid=True), primary_key=True, index=True, default=uuid.uuid4)
     cliente_id = Column(UUID(as_uuid=True), ForeignKey('clientes.id'))
     total = Column(Float)
+    fecha_venta = Column(Date, default=datetime.datetime.utcnow)
+    estado = Column(String)
     usuario_id = Column(UUID(as_uuid=True), ForeignKey('usuarios.id'))
     entrega_id = Column(UUID(as_uuid=True), ForeignKey('entregas.id'), nullable=True)
     productos = relationship(ProductoDB, secondary=VentaProductoDB.__tablename__, back_populates='ventas')

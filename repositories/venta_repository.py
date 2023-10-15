@@ -22,7 +22,8 @@ class VentaRepository:
         response = self.db.query(VentaDB).options(
             joinedload(VentaDB.productos),
             joinedload(VentaDB.cliente),
-            joinedload(VentaDB.entregas)
+            joinedload(VentaDB.entregas),
+            joinedload(VentaDB.usuario)
         ).filter(VentaDB.id == id).first()
         for field, value in vars(response).items():
             if not field.startswith("_"):
@@ -35,6 +36,7 @@ class VentaRepository:
             joinedload(VentaDB.cliente),
             joinedload(VentaDB.entregas).joinedload(EntregaDB.pasos)
         ).filter(VentaDB.usuario_id == id_usuario).all()
+        print(response)
         return response
 
     def create_venta(self, venta: CreateVenta, producto_ids: list, lista_cantidades: list[CantidadesPorVenta], entrega: Fecha):        

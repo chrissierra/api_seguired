@@ -1,5 +1,5 @@
 import uuid
-from sqlalchemy import Column, String
+from sqlalchemy import Column, String, Boolean
 from sqlalchemy.dialects.postgresql import UUID
 from db.connection import Base
 from sqlalchemy import Column, String, ForeignKey
@@ -22,6 +22,7 @@ class PasoDB(Base):
     id_paso_estandar = Column(UUID(as_uuid=True), ForeignKey('pasos_estandar.id'))
     ordinalidad = Column(String)
     caracteristicas = Column(String)
+    en_curso = Column(Boolean, default=False)
     entregas = relationship('EntregaDB', secondary=PasoEntregaDB.__tablename__, back_populates='pasos')
     tipo_producto = relationship("TipoProductoDB", back_populates="pasos")
     pasos_estandar =  relationship("PasosEstandarDB", back_populates="pasodb", foreign_keys="[PasoDB.id_paso_estandar]")

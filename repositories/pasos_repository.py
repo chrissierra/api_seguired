@@ -17,6 +17,7 @@ class PasosModel(BaseModel):
     id_paso_estandar: UUID
     """ nombre_paso: str """
     caracteristicas: str
+    en_curso: bool
     ordinalidad: str
     class Config:
         orm_mode = True
@@ -30,7 +31,6 @@ class PasoRepository:
 
     
     def get_paso(self, paso_id: UUID):
-        print('Buscando PASO')
         return self.db.query(PasoDB).filter(PasoDB.id == paso_id).first()
     
     def get_pasos_estandar_by_id_usuario(self, usuario_id: UUID):
@@ -59,6 +59,7 @@ class PasoRepository:
 
     
     def update_paso(self, id: UUID ,paso: PasoDB):
+        print('[Update Paso]', id, paso)
         db_paso = self.db.query(PasoDB).filter(PasoDB.id == id).first()
         if db_paso is None:
             return None

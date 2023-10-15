@@ -1,3 +1,4 @@
+import uuid
 from fastapi.params import Depends
 from api.usuarios.models import CreateUser, User
 from repositories.user_repository import UserRepository
@@ -12,3 +13,6 @@ class UserAPI:
     
     def get(self, email: str, user_repository: UserRepository = Depends(UserRepository)) -> User:
         return user_repository.get_by_email(email)
+    
+    def update(self, id: uuid.UUID, usuario: CreateUser, user_repository: UserRepository = Depends(UserRepository)) -> User:
+        return user_repository.update(id, usuario)    
